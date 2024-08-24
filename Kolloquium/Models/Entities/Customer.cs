@@ -1,7 +1,11 @@
-﻿namespace Kolloquium.Models.Entities
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace Kolloquium.Models.Entities
 {
     public class Customer
     {
+        [Key]
         public Guid c_id { get; set; }
         public string c_name { get; set; }
         public string c_phone { get; set; }

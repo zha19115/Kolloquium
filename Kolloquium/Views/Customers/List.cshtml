@@ -28,7 +28,8 @@
                 <td>@customer.c_phone</td>
                 <td>@customer.c_newsletter</td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Customers" asp-action="Edit" asp-route-id="@customer.c_id">Edit</a>
+                    <a class="btn btn-primary" asp-controller="Customers" asp-action="Edit" asp-route-c_id="@customer.c_id">Edit</a>
+                    
                 </td>
             </tr>
         }

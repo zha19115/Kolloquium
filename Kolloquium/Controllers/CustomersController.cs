@@ -49,6 +49,10 @@ namespace Kolloquium.Controllers
         public async Task<IActionResult> Edit(Guid c_id)
         {
             var customer= await dbContext.Customers.FindAsync(c_id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
             return View(customer);
         }
 
@@ -65,6 +69,26 @@ namespace Kolloquium.Controllers
                 customer.c_phone = viewModel.c_phone;
                 customer.c_newsletter = viewModel.c_newsletter;
 
+                await dbContext.SaveChangesAsync();
+            }
+            return RedirectToAction("List", "Customers");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Customer viewModel)
+        {
+            var customer = await dbContext.Customers.FindAsync(viewModel.c_id);
+            
+            if (customer is null)
+            {
+             
+                return NotFound();
+            }
+
+
+            if (customer is not null)
+            {
+                dbContext.Customers.Remove(customer);
                 await dbContext.SaveChangesAsync();
             }
             return RedirectToAction("List", "Customers");
